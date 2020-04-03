@@ -2,10 +2,16 @@ import React from 'react';
 import { render } from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import App from './containters/App';
 
+import { Provider } from 'react-redux';
 
+import configureStore from './store';
+import history from './history/history';
+
+
+const store = configureStore();
 
 // Render Setup
 const MOUNT_NODE = document.getElementById('root');
@@ -13,9 +19,11 @@ const MOUNT_NODE = document.getElementById('root');
 const renderApp = RootComponent => {
   render(
     // <React.StrictMode>
-    <BrowserRouter>
-      <RootComponent />
-    </BrowserRouter>
+    <Provider store={store}>
+      <Router history={history}>
+        <RootComponent />
+      </Router>
+    </Provider>
     // </React.StrictMode>
     ,
     MOUNT_NODE

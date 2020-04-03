@@ -1,9 +1,16 @@
 import React, { useState, useReducer } from 'react';
 import Layout from '../../layout';
 
-const Home = () => {
+const Home = (props) => {
 
-console.log('Home')
+
+    const todos = props.todos;
+
+    if (todos.length < 1) {
+        props.mAddToDo({ title: 'test', userId: '1' });
+    }
+
+    console.log('Home', props, todos)
     const [search, setSearch] = useState('');
 
     const handleSerach = (event) => {
