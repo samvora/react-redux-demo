@@ -4,18 +4,24 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import App from './containters/App';
+import { Provider } from 'react-redux';
+import configStore from './store';
 
 
 
+const store = configStore();
 // Render Setup
 const MOUNT_NODE = document.getElementById('root');
 
 const renderApp = RootComponent => {
   render(
     // <React.StrictMode>
-    <BrowserRouter>
-      <RootComponent />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <RootComponent />
+      </BrowserRouter>
+    </Provider>
+
     // </React.StrictMode>
     ,
     MOUNT_NODE

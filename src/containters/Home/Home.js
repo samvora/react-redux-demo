@@ -1,9 +1,15 @@
 import React, { useState, useReducer } from 'react';
 import Layout from '../../layout';
 
-const Home = () => {
+const Home = (props) => {
 
-console.log('Home')
+    console.log('Home', props);
+
+    const { actions } = props;
+    if (props.count < 1) {
+        actions.asyncIncrement({ number: 3 });
+    }
+
     const [search, setSearch] = useState('');
 
     const handleSerach = (event) => {
