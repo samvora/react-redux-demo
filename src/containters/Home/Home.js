@@ -17,14 +17,13 @@ const Home = () => {
     useEffect(() => {
         // it will be called only when component first time render
         axios.get('https://jsonplaceholder.typicode.com/todos').then(res => {
-            console.log(res.data);
             setTodos(res.data);
         });
     }, []);
 
     useEffect(() => {
         let updatedFilteredTodos = todos.filter(todo => {
-            if (filter.search != '') {
+            if (filter.search !== '') {
                 return todo.title.includes(filter.search);
             }
             else {
@@ -36,8 +35,10 @@ const Home = () => {
             updatedFilteredTodos = updatedFilteredTodos.splice(filter.perPage * (filter.currentPage - 1), filter.perPage);
         }
 
-        setFilter({ ...filter, filterTodos: updatedFilteredTodos, totalPages });
-    }, [filter.search, todos, filter.currentPage]);
+        setFilter((prevFilter) => {
+            return { ...prevFilter, filterTodos: updatedFilteredTodos, totalPages }
+        });
+    }, [filter.search, todos, filter.currentPage,filter.perPage]);
 
 
     const handleSerach = (event) => {
@@ -61,7 +62,7 @@ const Home = () => {
 
 
     return (
-        <Layout>
+        <Layout searchChange={handleSerach}>
             <div>
                 <input type="text" onChange={handleSerach} value={filter.search} />
                 {/* <Counter initialCount={1} /> */}

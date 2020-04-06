@@ -3,10 +3,10 @@ import Header from './header';
 import Footer from './footer';
 
 
-const layout = ({ header = true, footer = true, children }) => {
+const layout = ({ header = true, searchChange, footer = true, children }) => {
     return (
         <div>
-            {header && <Header />}
+            {header && <Header searchChange={searchChange} />}
             {children}
             {footer && <Footer />}
         </div>
