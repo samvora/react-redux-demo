@@ -1,10 +1,22 @@
 import React, { useState, useReducer, useEffect } from 'react';
 import Layout from '../../layout';
-import axios from 'axios';
+// import axios from 'axios';
+const Home = (props) => {
 
-const Home = () => {
+    console.log('Home', props)
+    const { actions } = props;
 
-    console.log('Home')
+    useEffect(()=>{
+        actions.setGlobalStore((globalStore)=>{
+            console.log(globalStore);
+            return {
+                ...globalStore,
+                // test:'updated',
+            };
+
+        }); 
+    });
+
     const [filter, setFilter] = useState({
         search: '',
         currentPage: 1,
@@ -16,10 +28,10 @@ const Home = () => {
 
     useEffect(() => {
         // it will be called only when component first time render
-        axios.get('https://jsonplaceholder.typicode.com/todos').then(res => {
-            console.log(res.data);
-            setTodos(res.data);
-        });
+        // axios.get('https://jsonplaceholder.typicode.com/todos').then(res => {
+        //     console.log(res.data);
+        //     setTodos(res.data);
+        // });
     }, []);
 
     useEffect(() => {

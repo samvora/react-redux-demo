@@ -4,17 +4,23 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import App from './containters/App';
+import GlobalStore from './containters/GlobalStore';
 
 
 
 // Render Setup
 const MOUNT_NODE = document.getElementById('root');
-
+const initialState = {
+  app: null,
+  test: { t: { in: 'dd' } },
+};
 const renderApp = RootComponent => {
   render(
     // <React.StrictMode>
     <BrowserRouter>
-      <RootComponent />
+      <GlobalStore initialState={initialState}>
+        <RootComponent />
+      </GlobalStore>
     </BrowserRouter>
     // </React.StrictMode>
     ,
