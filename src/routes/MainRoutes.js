@@ -3,6 +3,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from '../containters/Home';
 import UserDetail from '../containters/UserDetail';
+import Question from '../containters/Question';
 
 class MainRoutes extends React.Component {
 
@@ -24,6 +25,10 @@ class MainRoutes extends React.Component {
                 <Route
                     path="/users/:id"
                     component={UserDetail}
+                />
+                <Route
+                    path="/questions"
+                    component={Question}
                 />
                 <Route
                     component={Home}

@@ -2,9 +2,11 @@ import React, { useState, useReducer, useEffect } from 'react';
 import Layout from '../../layout';
 import axios from 'axios';
 
+import { questions } from './../../jsons/pain';
+
 const Home = () => {
 
-    console.log('Home')
+    console.log('Home',questions)
     const [filter, setFilter] = useState({
         search: '',
         currentPage: 1,
